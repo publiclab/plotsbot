@@ -1,12 +1,25 @@
 const irc = require('irc');
 
-module.exports = {
-  newBot: (server, name, channels) => {
-    return new irc.Client(server, name, { channels });
-  },
-  addJoinHandler: (bot, actions) => {
-    bot.addListener('join', (channel, username) => {
-      actions(bot, channel, username);
+class IrcClient {
+  constructor(server, nick, channels) {
+    this.client = new irc.Client(server, nick, {channels});
+  }
+
+  addJoinHandler(actions) {
+    this.client.addListener('join', (channel, nick, message) => {
+      actions(channel, nick);
     });
-  },
-}
+  }
+
+  sendMessage(channel, message) {
+    this.client.say(channel, message);
+  }
+
+  addMessageHandler(actions) {
+    this.client.addListener('message', (from, to, message) => {
+      actions(from, to, message);
+    });
+  }
+};
+
+module.exports = IrcClient;
