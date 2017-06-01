@@ -1,0 +1,12 @@
+{
+  "name": "plotsbot",
+  "version": "0.1.0",
+  "description": "A bot for Public Lab",
+  "main": "bot.js",
+  "repository": "git@github.com:publiclab/plotsbot.git",
+  "author": "Ujjwal Sharma",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "irc": "^0.5.2"
+  }
+}
