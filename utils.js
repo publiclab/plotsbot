@@ -1,5 +1,5 @@
 function helpMessage (name, service) {
-  let out = `## ${service}\n`;
+  let out = `# ${service}\n`;
 
   switch (service) {
     case 'chatbot':
