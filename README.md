@@ -1,6 +1,14 @@
 # plotsbot
 A bot for Public Lab
 
+## Features
+
+### Chatbot
+
+1. **Greet**: The bot greets users when they join the channel. The functionality along with the exact greet message can be found inside the codebase [here](https://github.com/publiclab/plotsbot/blob/master/chatbot.js#L18-L21).
+
+2. **Help**: Upon recieving any message starting with the word "help", the bot prints out the help messages of the modules whose names have been specified. If no modules were mentioned, all modules are explained. The functionality along with the code for the generation of the exact help text can be found inside the codebase [here](https://github.com/publiclab/plotsbot/blob/master/utils.js#L1-L15).
+
 ## Dependencies
 
 ### 1. NVM

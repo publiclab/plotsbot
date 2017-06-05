@@ -1,11 +1,9 @@
-const irc = require('irc');
-
 const config = require('./config');
 
-const bot = new irc.Client(config.server, config.name, {
-  channels: config.channels
-});
+const IrcClient = require('./interfaces/irc');
+const Chatbot = require('./services/chatbot');
 
-bot.addListener('join', (channel, who) => {
-  bot.say(channel, `Welcome to Publiclab, ${who}!`);
-});
+const ircClient = new IrcClient(config.server, config.name, config.channels);
+const chatbot = new Chatbot(config.name, ircClient);
+
+chatbot.addListeners();
