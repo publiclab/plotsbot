@@ -1,6 +1,6 @@
 {
   "name": "plotsbot",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A bot for Public Lab",
   "main": "bot.js",
   "repository": "git@github.com:publiclab/plotsbot.git",
