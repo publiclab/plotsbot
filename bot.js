@@ -1,6 +1,6 @@
 const config = require('./config');
 
-const IrcClient = require('./services/irc');
+const IrcClient = require('./interfaces/irc');
 const Chatbot = require('./services/chatbot');
 
 const ircClient = new IrcClient(config.server, config.name, config.channels);
