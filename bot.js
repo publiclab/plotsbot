@@ -1,9 +1,17 @@
 const config = require('./config');
 
-const IrcClient = require('./interfaces/irc');
 const Chatbot = require('./services/chatbot');
 
-const ircClient = new IrcClient(config.server, config.name, config.channels);
-const chatbot = new Chatbot(config.name, ircClient);
+if (process.env.TEST) {
+  const CliClient = require('./interfaces/cli');
+  var client = new CliClient(config.name);
+  console.log('Bot is running in testing mode.');
+  console.log(`[${process.env.USER} => ${config.name}]`);
+} else {
+  const IrcClient = require('./interfaces/irc');
+  var client = new IrcClient(config.server, config.name, config.channels);
+}
+
+const chatbot = new Chatbot(config.name, client);
 
 chatbot.addListeners();

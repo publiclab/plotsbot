@@ -11,7 +11,7 @@ message for ALL modules.`;
 the \`chatbot\` module instead.`
   }
 
-  return out + '\n\n';
+  return out;
 }
 
 function printGeneralHelp (name) {
@@ -19,11 +19,7 @@ function printGeneralHelp (name) {
 }
 
 function printSpecificHelp (name, message) {
-  let out = '';
-  message.forEach((service) => {
-    out += helpMessage(name, service);
-  });
-  return out;
+  return message.map((service) => helpMessage(name, service)).join('\n\n');
 }
 
 function parseMessage (message) {
@@ -31,12 +27,9 @@ function parseMessage (message) {
 }
 
 function messageResponse (name, message) {
-  console.log('Bot was mentioned!');
-
   switch (message[0]) {
     case 'help':
       message.splice(0, 1);
-      console.log(message);
 
       if (message.length === 0) {
         return printGeneralHelp(name);

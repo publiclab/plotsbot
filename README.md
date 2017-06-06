@@ -33,7 +33,13 @@ In order to install all node modules the package depends on, just run `yarn` or 
 
 ## Run
 
-Now that you're ready, run the bot by running the command, `node bot.js`
+Now that you're ready, run the bot by running the command, `node bot.js`.
+
+In development, running the bot using nodemon is recommended. Install nodemon by running `npm install -g nodemon` or `yarn global add nodemon` and then execute the bot using `nodemon bot.js`. Nodemon will listen for changes to the files and rerun the bot automatically whenever you make a change.
+
+## Experimentation
+
+In order to experiment locally on the bot, you need to set the `TEST` environment variable to be true. Running the bot using `TEST=true node bot.js` will work.
 
 ## Contributing
 
