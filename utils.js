@@ -11,7 +11,7 @@ message for ALL modules.`;
 the \`chatbot\` module instead.`
   }
 
-  return out + '\n\n';
+  return out;
 }
 
 function printGeneralHelp (name) {
@@ -19,11 +19,7 @@ function printGeneralHelp (name) {
 }
 
 function printSpecificHelp (name, message) {
-  let out = '';
-  message.forEach((service) => {
-    out += helpMessage(name, service);
-  });
-  return out;
+  return message.map((service) => helpMessage(name, service)).join('\n\n');
 }
 
 function parseMessage (message) {
