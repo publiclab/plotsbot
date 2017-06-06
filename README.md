@@ -1,13 +1,43 @@
 # plotsbot
 A bot for Public Lab
 
-## Features
+plotsbot is an integrated system for bots across various interfaces, such as in an IRC chatroom, in GitHub issues, or on PublicLab.org. The bot consists of a set of behaviors, like "Greet" or "Help" (see below) which can work on one or more interface.
+
+## Interfaces
+
+The various interfaces of plotsbot allow it to interact with various resources online and locally. As of now, plotsbot interacts with one resource at a time, but in the future multiple interfaces can be supported simultaneously.
+
+There are two types of interfaces:
+1. Private Interfaces where one to one conversations take place between the user and plotsbot. Each message sent by the user is meant for plotsbot and vice versa and should be interpreted as such.
+2. Public Interfaces where many to one conversation takes place between a number of users and plotsbot. Each message sent by a user might or might not be meant for a specific other user (or plotsbot), and thus each message meant for plotsbot should consider its name explicitly.
+
+### IRC
+
+This interface allows plotsbot to interact with users on IRC. In production, plotsbot connects to #publiclab channel on the OFTC IRC network. For testing purposes, technically the bot can be made to connect to any possible channel but #publiclab-testing on OFTC is dedicated towards the purpose of testing the bot.
+
+IRC classifies as both a public and a private interface as the general IRC channel acts as a public interface to the bot while a user can DM the bot which would act as a private interface to the bot.
+
+### CLI
+
+Coming Soon
+
+## Services
+
+Services are different from interfaces as they carry out computational tasks and not I/O tasks like interfaces do. Therefore, the bot takes input from an interface, directs it to a service which would preform actions on the data and return data which the bot will output through another interface.
 
 ### Chatbot
 
 1. **Greet**: The bot greets users when they join the channel. The functionality along with the exact greet message can be found inside the codebase [here](https://github.com/publiclab/plotsbot/blob/master/chatbot.js#L18-L21).
 
 2. **Help**: Upon recieving any message starting with the word "help", the bot prints out the help messages of the modules whose names have been specified. If no modules were mentioned, all modules are explained. The functionality along with the code for the generation of the exact help text can be found inside the codebase [here](https://github.com/publiclab/plotsbot/blob/master/utils.js#L1-L15).
+
+### Github
+
+Coming Soon
+
+### Publiclab
+
+Coming Soon
 
 ## Dependencies
 
