@@ -31,12 +31,9 @@ function parseMessage (message) {
 }
 
 function messageResponse (name, message) {
-  console.log('Bot was mentioned!');
-
   switch (message[0]) {
     case 'help':
       message.splice(0, 1);
-      console.log(message);
 
       if (message.length === 0) {
         return printGeneralHelp(name);

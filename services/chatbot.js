@@ -21,7 +21,6 @@ quick walkthrough, send the message: \`${this.nick} help\``);
     });
 
     this.client.addMessageHandler((from, to, message) => {
-      // console.log(`${from} => ${to}: ${message}`);
       const parsed = utils.parseMessage(message);
 
       if (parsed.indexOf(this.nick) != -1) {
