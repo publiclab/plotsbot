@@ -10,7 +10,7 @@ class Chatbot {
     if (to.charAt(0) === '#') {
       this.client.sendMessage(to, message);
     } else {
-      this.client.sendMessage(from, message)
+      this.client.sendMessage(from, message);
     }
   }
 
@@ -34,6 +34,6 @@ quick walkthrough, send the message: \`${this.nick} help\``);
       }
     });
   }
-};
+}
 
 module.exports = Chatbot;

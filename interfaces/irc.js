@@ -6,7 +6,7 @@ class IrcClient {
   }
 
   addJoinHandler(actions) {
-    this.client.addListener('join', (channel, nick, message) => {
+    this.client.addListener('join', (channel, nick) => {
       actions(channel, nick);
     });
   }
@@ -20,6 +20,6 @@ class IrcClient {
       actions(from, to, message);
     });
   }
-};
+}
 
 module.exports = IrcClient;
