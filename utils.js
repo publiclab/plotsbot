@@ -2,13 +2,14 @@ function helpMessage (name, service) {
   let out = `# ${service}\n`;
 
   switch (service) {
-    case 'chatbot':
-      out += `\`${name} help [<module>...]\`: Prints out this descriptive help \
+  case 'chatbot':
+    out += `\`${name} help [<module>...]\`: Prints out this descriptive help \
 message for each mentioned module. If no modules are specified, print the help \
 message for ALL modules.`;
-    default:
-      out += `\`${service}\` is not the name of a valid module. Try looking up \
-the \`chatbot\` module instead.`
+    break;
+  default:
+    out += `\`${service}\` is not the name of a valid module. Try looking up \
+the \`chatbot\` module instead.`;
   }
 
   return out;
@@ -28,14 +29,14 @@ function parseMessage (message) {
 
 function messageResponse (name, message) {
   switch (message[0]) {
-    case 'help':
-      message.splice(0, 1);
+  case 'help':
+    message.splice(0, 1);
 
-      if (message.length === 0) {
-        return printGeneralHelp(name);
-      } else {
-        return printSpecificHelp(name, message);
-      }
+    if (message.length === 0) {
+      return printGeneralHelp(name);
+    } else {
+      return printSpecificHelp(name, message);
+    }
   }
 }
 
