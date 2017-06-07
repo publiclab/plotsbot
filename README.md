@@ -27,6 +27,18 @@ CLI is a private interface. You do not need to mention the bot in each message y
 
 This interface can be used instead of the default interface by setting the environment variable `TEST` to `true`.
 
+#### Example:
+
+```
+➜  plotsbot git:(master) TEST=true node bot.js
+Bot is running in testing mode.
+[ryzokuken => plotsbot-ryzokuken]
+help
+[plotsbot-ryzokuken => ryzokuken]
+# chatbot
+`plotsbot-ryzokuken help [<module>...]`: Prints out this descriptive help message for each mentioned module. If no modules are specified, print the help message for ALL modules.`chatbot` is not the name of a valid module. Try looking up the `chatbot` module instead.
+```
+
 ## Services
 
 Services are different from interfaces as they carry out computational tasks and not I/O tasks like interfaces do. Therefore, the bot takes input from an interface, directs it to a service which would preform actions on the data and return data which the bot will output through another interface.
