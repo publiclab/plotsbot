@@ -100,3 +100,6 @@ We use Semantic Versioning for maintaining versions for the git tag and npm pack
 * In order to increment PATCH version, use `npm version patch`
 
 In order to help you decide which version to bump to, issues will be labelled appropriately as far as possible.
+
+### Code styling
+We use [ESLint](http://eslint.org) for linting our codebase. Run `eslint .` for checking lint errors. Most common errors can be fixed by running `eslint --fix .`. Code styling is an important part of writing good code to the make the code more readable and meaningful. We follow the latest ES6 standards for our codebase. Make sure you run the lint checks before submitting a PR so that there are no CI build failures.  
