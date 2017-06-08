@@ -17,9 +17,27 @@ This interface allows plotsbot to interact with users on IRC. In production, plo
 
 IRC classifies as both a public and a private interface as the general IRC channel acts as a public interface to the bot while a user can DM the bot which would act as a private interface to the bot.
 
+This is the default interface for plotsbot.
+
 ### CLI
 
-Coming Soon
+This interface allows you to experiment on the bot locally and interact with it on the command line interface instead of an actual IRC channel. Think of this interface as a sandbox to test features out on your local machine.
+
+CLI is a private interface. You do not need to mention the bot in each message you send because it is implied that any message you send is meant for the bot.
+
+This interface can be used instead of the default interface by setting the environment variable `TEST` to `true`.
+
+#### Example:
+
+```
+➜  plotsbot git:(master) TEST=true node bot.js
+Bot is running in testing mode.
+[ryzokuken => plotsbot-ryzokuken]
+help
+[plotsbot-ryzokuken => ryzokuken]
+# chatbot
+`plotsbot-ryzokuken help [<module>...]`: Prints out this descriptive help message for each mentioned module. If no modules are specified, print the help message for ALL modules.`chatbot` is not the name of a valid module. Try looking up the `chatbot` module instead.
+```
 
 ## Services
 
