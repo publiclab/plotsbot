@@ -1,6 +1,6 @@
 {
   "name": "plotsbot",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "A bot for Public Lab",
   "main": "bot.js",
   "repository": "git@github.com:publiclab/plotsbot.git",
@@ -12,5 +12,9 @@
   },
   "devDependencies": {
     "eslint": "^3.19.0"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint .",
+    "lint-fix": "./node_modules/.bin/eslint --fix ."
   }
 }
