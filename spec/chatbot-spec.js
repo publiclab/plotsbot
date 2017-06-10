@@ -1,6 +1,15 @@
 const utils = require('../utils');
 
 describe('Chatbot Service', () => {
+  describe('Message Parsing', () => {
+    it('parses messages correctly', () => {
+      expect(utils.parseMessage('@plotsbot, help module1 module2')).toEqual(['@plotsbot', 'help', 'module1', 'module2']);
+      expect(utils.parseMessage('@plotsbot: help module1 module2')).toEqual(['@plotsbot', 'help', 'module1', 'module2']);
+      expect(utils.parseMessage('plotsbot, help module1 module2')).toEqual(['plotsbot', 'help', 'module1', 'module2']);
+      expect(utils.parseMessage('plotsbot: help module1 module2')).toEqual(['plotsbot', 'help', 'module1', 'module2']);
+    });
+  });
+
   describe('Help Behavior', () => {
     it('prints general help correctly', () => {
       expect(utils.messageResponse('plotsbot', ['help'])).toBe(utils.printGeneralHelp('plotsbot'));
