@@ -101,6 +101,8 @@ We use Semantic Versioning for maintaining versions for the git tag and npm pack
 
 In order to help you decide which version to bump to, issues will be labelled appropriately as far as possible.
 
+You need to bump the version only for the source files pertaining to the project and not for documentation and other configuration files. As a rule of thumb, bump the version if your commit involves making changes to a file with the `.js` extension.
+
 ### Code styling
 We use [ESLint](http://eslint.org) for linting our codebase. Run `yarn lint` or `npm run-script lint` for checking lint errors. Most common errors can be fixed by running `yarn lint-fix` or `npm run-script lint-fix`. Code styling is an important part of writing good code to the make the code more readable and meaningful. We follow the latest ES6 standards for our codebase. Make sure you run the lint checks before submitting a PR so that there are no CI build failures.  
 
