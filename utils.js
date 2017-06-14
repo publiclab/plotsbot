@@ -42,5 +42,7 @@ function messageResponse (name, message) {
 
 module.exports = {
   parseMessage,
-  messageResponse
+  messageResponse,
+  printGeneralHelp,
+  printSpecificHelp
 };
