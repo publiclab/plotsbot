@@ -21,18 +21,27 @@ quick walkthrough, send the message: \`${this.nick} help\``);
     });
 
     this.client.addMessageHandler((from, to, message) => {
-      const parsed = utils.parseMessage(message);
-
-      if (parsed.indexOf(this.nick) != -1) {
-        parsed.splice(parsed.indexOf(this.nick), 1);
-        this.sendMessage(from, to, utils.messageResponse(this.nick, parsed));
-      } else if (parsed.indexOf('@' + this.nick) != -1) {
-        parsed.splice(parsed.indexOf('@' + this.nick), 1);
-        this.sendMessage(from, to, utils.messageResponse(this.nick, parsed));
-      } else if (to === this.nick) {
-        this.sendMessage(from, to, utils.messageResponse(this.nick, parsed));
+      const response = this.getResponse(to, message);
+      if (response) {
+        this.sendMessage(from, to, response);
       }
     });
+  }
+
+  getResponse (to, message) {
+    let parsed = utils.parseMessage(message);
+
+    if (parsed.indexOf(this.nick) != -1) {
+      parsed.splice(parsed.indexOf(this.nick), 1);
+      return utils.messageResponse(this.nick, parsed);
+    } else if (parsed.indexOf('@' + this.nick) != -1) {
+      parsed.splice(parsed.indexOf('@' + this.nick), 1);
+      return utils.messageResponse(this.nick, parsed);
+    } else if (to === this.nick) {
+      return utils.messageResponse(this.nick, parsed);
+    } else {
+      return undefined;
+    }
   }
 }
 
