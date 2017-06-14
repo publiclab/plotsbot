@@ -16,7 +16,7 @@ class Chatbot {
 
   addListeners () {
     this.client.addJoinHandler((channel, nick) => {
-      this.client.sendMessage(channel, `Welcome to Publiclab, ${nick}! For a \
+      this.sendMessage(this.nick, channel, `Welcome to Publiclab, ${nick}! For a \
 quick walkthrough, send the message: \`${this.nick} help\``);
     });
 
