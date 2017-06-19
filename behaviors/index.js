@@ -1,7 +1,7 @@
-const utils = require('./utils');
+const utils = require('../utils');
 
-const greetBehavior = require('./behavior-modules/greet');
-const helpBehavior = require('./behavior-modules/help');
+const greetBehavior = require('./greet');
+const helpBehavior = require('./help');
 
 function parseMessage (message) {
   return message.split(/[\s,.;:!?]/g).filter(String);
