@@ -8,10 +8,19 @@ function parseMessage (message) {
 }
 
 function messageResponse(botNick, parsed, behaviors) {
+  // This function takes the parsed version of the message and the array of
+  // behaviors with `trigger` equal to "message" (i.e. the behaviors supposed to
+  // be triggered on message), executes the action of a behavior if it was
+  // mentioned by `keyword` and returns the result
+
+  // This snippet looks if the parsed message contains the keyword of any of the
+  // behavior inside the behaviors array.
   const behavior = behaviors.find(behavior =>
     utils.contains(parsed, behavior.keyword)
   );
 
+  // If there was a match, remove the behavior's keyword from the parsed message
+  // call the behavior's action with the remaining message and the bot's nick
   if (behavior) {
     utils.remove(parsed, behavior.keyword);
     return behavior.action(botNick, parsed);
