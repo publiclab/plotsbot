@@ -39,23 +39,32 @@ help
 `plotsbot-ryzokuken help [<module>...]`: Prints out this descriptive help message for each mentioned module. If no modules are specified, print the help message for ALL modules.`chatbot` is not the name of a valid module. Try looking up the `chatbot` module instead.
 ```
 
-## Services
+## Behaviors
 
-Services are different from interfaces as they carry out computational tasks and not I/O tasks like interfaces do. Therefore, the bot takes input from an interface, directs it to a service which would preform actions on the data and return data which the bot will output through another interface.
+Behaviors are clearly defined tasks performed by the bot. A behavior may use any third-party functions to perform this action, but it needs to expose a have a few mandatory fields that are used by the chatbot to trigger the behavior at the appropriate time.
 
-### Chatbot
+**Behavior Specification**:
+1. `trigger: String` => The event on which the behavior is supposed to be triggered. Currently, two events are supported - the `join` event which is triggered whenever a new user joins a particular channel, and the `message` event whenever a particular user sends a message on a channel.
+2. `action: Function` => This is the action of the behavior which is called by the bot at the appropriate moment. The bot provides the function with different arguments depending on the corresponding behavior's `trigger` value. For behaviors with `trigger` equal to `join`, the bot passes four arguments to the action function upon trigger. These are:
+  1 `channel: String` => This is the name of the channel on which the user joined.
+  2. `username: String` => This is the username of the new user.
+  3. `botNick: String` => This is the username of the bot.
 
-1. **Greet**: The bot greets users when they join the channel. The functionality along with the exact greet message can be found inside the codebase [here](https://github.com/publiclab/plotsbot/blob/master/services/chatbot.js#L18-L21).
+  On the other hand, for behaviors with `trigger` equal to `message`, the bot passes two arguments to the action function. These are:
+  1. `botNick: String` => This is the username of the bot.
+  2. `options: Array` => This is an array containing additional options provided by the user.
+3. `keyword: String` **(Only required for message triggered behaviors)** => This is the keyword that must be present in the message in order for the bot to call the behavior's action function.
 
-2. **Help**: Upon recieving any message starting with the word "help", the bot prints out the help messages of the modules whose names have been specified. If no modules were mentioned, all modules are explained. The functionality along with the code for the generation of the exact help text can be found inside the codebase [here](https://github.com/publiclab/plotsbot/blob/master/utils.js#L1-L15).
+### Greet
+`trigger` **join**
 
-### Github
+The bot greets users when they join the channel.
 
-Coming Soon
+### Help
+`trigger` **message**  
+`keyword` **help**
 
-### Publiclab
-
-Coming Soon
+Prints out the help messages of the modules whose names have been specified. If no modules were mentioned, all modules are explained.
 
 ## Dependencies
 
