@@ -1,6 +1,6 @@
 const config = require('./config');
 
-const Chatbot = require('./services/chatbot');
+const Behaviors = require('./behaviors');
 
 let client;
 
@@ -14,6 +14,5 @@ if (process.env.TEST) {
   client = new IrcClient(config.server, config.name, config.channels);
 }
 
-const chatbot = new Chatbot(config.name, client);
-
-chatbot.addListeners();
+const behaviors = new Behaviors(config.name, client);
+behaviors.bootstrap();
