@@ -30,4 +30,7 @@ let helpAction = (botNick, options) => {
   }
 };
 
-module.exports = new Behavior('message', helpAction, 'help');
+module.exports = {
+  helpBehavior: new Behavior('message', helpAction, 'help'),
+  helpMessage
+};

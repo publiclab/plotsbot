@@ -1,20 +1,21 @@
 const utils = require('../utils');
 
 const greetBehavior = require('./greet');
-const helpBehavior = require('./help');
+const helpBehavior = require('./help').helpBehavior;
 
 function parseMessage (message) {
   return message.split(/[\s,.;:!?]/g).filter(String);
 }
 
 function messageResponse(botNick, parsed, behaviors) {
-  behaviors.forEach(behavior => {
-    if(utils.contains(parsed, behavior.keyword)) {
-      utils.remove(parsed, behavior.keyword);
-      console.log(behavior.action(botNick, parsed));
-      return behavior.action(botNick, parsed);
-    }
-  });
+  const behavior = behaviors.find(behavior =>
+    utils.contains(parsed, behavior.keyword)
+  );
+
+  if (behavior) {
+    utils.remove(parsed, behavior.keyword);
+    return behavior.action(botNick, parsed);
+  }
 }
 
 class Behaviors {
