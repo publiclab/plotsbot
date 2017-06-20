@@ -1,5 +1,5 @@
-const Behaviors = require('../behaviors');
-const helpMessage = require('../behaviors/help').helpMessage;
+const Behaviors = require('../src/behaviors');
+const helpMessage = require('../src/behaviors/help').helpMessage;
 
 describe('Help Behavior', () => {
   const botNick = 'testbot';
