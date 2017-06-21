@@ -41,12 +41,13 @@ help
 
 ## Behaviors
 
-Behaviors are clearly defined tasks performed by the bot. A behavior may use any third-party functions to perform this action, but it needs to expose a have a few mandatory fields that are used by the chatbot to trigger the behavior at the appropriate time.
+Behaviors are clearly defined tasks performed by the bot. A behavior may use any third-party functions to perform this action, but it needs to expose a few mandatory fields that are used by the chatbot to trigger the behavior at the appropriate time.
 
-**Behavior Specification**:
+#### Behavior Specification
+
 1. `trigger: String` => The event on which the behavior is supposed to be triggered. Currently, two events are supported - the `join` event which is triggered whenever a new user joins a particular channel, and the `message` event whenever a particular user sends a message on a channel.
-2. `action: Function` => This is the action of the behavior which is called by the bot at the appropriate moment. The bot provides the function with different arguments depending on the corresponding behavior's `trigger` value. For behaviors with `trigger` equal to `join`, the bot passes four arguments to the action function upon trigger. These are:
-  1 `channel: String` => This is the name of the channel on which the user joined.
+2. `action: Function` => This is the action of the behavior which is called by the bot at the appropriate moment. The bot provides the function with different arguments depending on the corresponding behavior's `trigger` value. For behaviors with `trigger` equal to `join`, the bot passes three arguments to the action function upon trigger. These are:
+  1. `channel: String` => This is the name of the channel on which the user joined.
   2. `username: String` => This is the username of the new user.
   3. `botNick: String` => This is the username of the bot.
 
