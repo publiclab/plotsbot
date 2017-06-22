@@ -49,7 +49,9 @@ help
     1. `channel: String` => This is the name of the channel on which the user joined.
     2. `username: String` => This is the username of the new user.
     3. `botNick: String` => This is the username of the bot.
-On the other hand, for behaviors with `trigger` equal to `message`, the bot passes two arguments to the action function. These are:
+
+    On the other hand, for behaviors with `trigger` equal to `message`, the bot passes two arguments to the action function. These are:
+
     1. `botNick: String` => This is the username of the bot.
     2. `options: Array` => This is an array containing additional options provided by the user.
 3. `keyword: String` **(Only required for message triggered behaviors)** => This is the keyword that must be present in the message in order for the bot to call the behavior's action function.
