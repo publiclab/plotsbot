@@ -43,7 +43,18 @@ help
 
 Behaviors are clearly defined tasks performed by the bot. A behavior may use any third-party functions to perform this action, but it needs to expose a few mandatory fields that are used by the chatbot to trigger the behavior at the appropriate time.
 
-#### Behavior Specification
+### Greet
+`trigger` **join**
+
+The bot greets users when they join the channel.
+
+### Help
+`trigger` **message**  
+`keyword` **help**
+
+Prints out the help messages of the modules whose names have been specified. If no modules were mentioned, all modules are explained.
+
+## Behavior Model
 
 1. `trigger: String` => The event on which the behavior is supposed to be triggered. Currently, two events are supported - the `join` event which is triggered whenever a new user joins a particular channel, and the `message` event whenever a particular user sends a message on a channel.
 2. `action: Function` => This is the action of the behavior which is called by the bot at the appropriate moment. The bot provides the function with different arguments depending on the corresponding behavior's `trigger` value. For behaviors with `trigger` equal to `join`, the bot passes three arguments to the action function upon trigger. These are:
@@ -56,16 +67,6 @@ Behaviors are clearly defined tasks performed by the bot. A behavior may use any
   2. `options: Array` => This is an array containing additional options provided by the user.
 3. `keyword: String` **(Only required for message triggered behaviors)** => This is the keyword that must be present in the message in order for the bot to call the behavior's action function.
 
-### Greet
-`trigger` **join**
-
-The bot greets users when they join the channel.
-
-### Help
-`trigger` **message**  
-`keyword` **help**
-
-Prints out the help messages of the modules whose names have been specified. If no modules were mentioned, all modules are explained.
 
 ## Dependencies
 
