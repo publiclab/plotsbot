@@ -1,6 +1,9 @@
-const config = require('../config');
+const jsonfile = require('jsonfile');
 
 const Behaviors = require('./behaviors');
+
+// Read file synchronously because we'd need this object in later steps anyway.
+const config = jsonfile.readFileSync('config.json');
 
 let client;
 
