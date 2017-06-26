@@ -1,6 +1,9 @@
-const config = require('../config');
+const fs = require('fs');
 
 const Behaviors = require('./behaviors');
+
+// Read file synchronously because we'd need this object in later steps anyway.
+const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 
 let client;
 

@@ -1,5 +1,0 @@
-module.exports = {
-  channels: ['#publiclab-testing'],
-  server: 'irc.oftc.net',
-  name: 'plotsbot'
-};
