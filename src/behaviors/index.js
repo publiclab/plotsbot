@@ -57,6 +57,8 @@ class Behaviors {
             this.client.sendMessage(to, response);
           }
         }
+      }).catch(err => {
+        console.error(err);
       });
     });
   }
