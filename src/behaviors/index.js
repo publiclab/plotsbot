@@ -8,23 +8,25 @@ function parseMessage (message) {
 }
 
 function messageResponse(botNick, parsed, behaviors) {
-  // This function takes the parsed version of the message and the array of
-  // behaviors with `trigger` equal to "message" (i.e. the behaviors supposed to
-  // be triggered on message), executes the action of a behavior if it was
-  // mentioned by `keyword` and returns the result
+  return Promise.resolve().then(() => {
+    // This function takes the parsed version of the message and the array of
+    // behaviors with `trigger` equal to "message" (i.e. the behaviors supposed to
+    // be triggered on message), executes the action of a behavior if it was
+    // mentioned by `keyword` and returns the result
 
-  // This snippet looks if the parsed message contains the keyword of any of the
-  // behavior inside the behaviors array.
-  const behavior = behaviors.find(behavior =>
-    utils.contains(parsed, behavior.keyword)
-  );
+    // This snippet looks if the parsed message contains the keyword of any of the
+    // behavior inside the behaviors array.
+    const behavior = behaviors.find(behavior =>
+      utils.contains(parsed, behavior.keyword)
+    );
 
-  // If there was a match, remove the behavior's keyword from the parsed message
-  // call the behavior's action with the remaining message and the bot's nick
-  if (behavior) {
-    utils.remove(parsed, behavior.keyword);
-    return behavior.action(botNick, parsed);
-  }
+    // If there was a match, remove the behavior's keyword from the parsed message
+    // call the behavior's action with the remaining message and the bot's nick
+    if (behavior) {
+      utils.remove(parsed, behavior.keyword);
+      return behavior.action(botNick, parsed);
+    }
+  });
 }
 
 class Behaviors {
@@ -45,36 +47,41 @@ class Behaviors {
 
   addMessageHandler() {
     this.client.addMessageHandler((from, to, message) => {
-      const response = this.getResponse(to, message);
-      if(response) {
-        if(to === this.botNick) {
-          // Message was recieved in a DM
-          this.client.sendMessage(from, response);
-        } else {
-          // Message was recieved in a normal channel
-          this.client.sendMessage(to, response);
+      this.getResponse(to, message).then((response) => {
+        if(response) {
+          if(to === this.botNick) {
+            // Message was recieved in a DM
+            this.client.sendMessage(from, response);
+          } else {
+            // Message was recieved in a normal channel
+            this.client.sendMessage(to, response);
+          }
         }
-      }
+      }).catch(err => {
+        console.error(err);
+      });
     });
   }
 
   getResponse(to, message) {
-    let parsed = parseMessage(message);
-    if(to === this.botNick) {
-      // If the message was sent directly to the bot (eg: in a DM)
-      return messageResponse(this.botNick, parsed, this.messageBehaviors);
-    } else if (utils.contains(parsed, this.botNick)) {
-      // If bot was mentioned
-      utils.remove(parsed, this.botNick);
-      return messageResponse(this.botNick, parsed, this.messageBehaviors);
-    } else if (utils.contains(parsed, '@' + this.botNick)) {
-      // If bot was mentioned, Gitter style
-      utils.remove(parsed, '@' + this.botNick);
-      return messageResponse(this.botNick, parsed, this.messageBehaviors);
-    } else {
-      // If the message was not meant for the bot
-      return undefined;
-    }
+    return Promise.resolve().then(() => {
+      let parsed = parseMessage(message);
+      if(to === this.botNick) {
+        // If the message was sent directly to the bot (eg: in a DM)
+        return messageResponse(this.botNick, parsed, this.messageBehaviors);
+      } else if (utils.contains(parsed, this.botNick)) {
+        // If bot was mentioned
+        utils.remove(parsed, this.botNick);
+        return messageResponse(this.botNick, parsed, this.messageBehaviors);
+      } else if (utils.contains(parsed, '@' + this.botNick)) {
+        // If bot was mentioned, Gitter style
+        utils.remove(parsed, '@' + this.botNick);
+        return messageResponse(this.botNick, parsed, this.messageBehaviors);
+      } else {
+        // If the message was not meant for the bot
+        return undefined;
+      }
+    });
   }
 
   bootstrap() {
