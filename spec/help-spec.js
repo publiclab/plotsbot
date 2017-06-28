@@ -3,32 +3,37 @@ const helpMessage = require('../src/behaviors/help').helpMessage;
 
 describe('Help Behavior', () => {
   const botNick = 'testbot';
-  const behaviors = new Behaviors(botNick, undefined);
+  const helpBehavior = require('../src/behaviors/help').helpBehavior;
+  const behaviors = new Behaviors(botNick, undefined, [], [helpBehavior]);
 
   const chatbotHelp = helpMessage(botNick, 'chatbot');
   const invalidHelp = helpMessage(botNick, 'invalid');
 
-  it('should print general help', () => {
+  it('should print general help', (done) => {
     behaviors.getResponse(botNick, 'help').then(response => {
       expect(response).toBe(chatbotHelp);
+      done();
     });
   });
 
-  it('should print specific help for existing modules', () => {
+  it('should print specific help for existing modules', (done) => {
     behaviors.getResponse(botNick, 'help chatbot').then(response => {
       expect(response).toBe(chatbotHelp);
+      done();
     });
   });
 
-  it('should print specific help for nonexisting modules', () => {
+  it('should print specific help for nonexisting modules', (done) => {
     behaviors.getResponse(botNick, 'help invalid').then(response => {
       expect(response).toBe(invalidHelp);
+      done();
     });
   });
 
-  it('should print specific help for existing and nonexisting modules combined', () => {
+  it('should print specific help for existing and nonexisting modules combined', (done) => {
     behaviors.getResponse(botNick, 'help chatbot invalid').then(response => {
       expect(response).toBe(chatbotHelp + '\n\n' + invalidHelp);
+      done();
     });
   });
 });

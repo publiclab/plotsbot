@@ -1,8 +1,5 @@
 const utils = require('../utils');
 
-const greetBehavior = require('./greet');
-const helpBehavior = require('./help').helpBehavior;
-
 function parseMessage (message) {
   return message.split(/[\s,.;:!?]/g).filter(String);
 }
@@ -30,11 +27,11 @@ function messageResponse(botNick, parsed, behaviors) {
 }
 
 class Behaviors {
-  constructor(botNick, client) {
+  constructor(botNick, client, joinBehaviors, messageBehaviors) {
     this.botNick = botNick;
     this.client = client;
-    this.joinBehaviors = [ greetBehavior ];
-    this.messageBehaviors = [ helpBehavior ];
+    this.joinBehaviors = joinBehaviors;
+    this.messageBehaviors = messageBehaviors;
   }
 
   addJoinHandler() {
