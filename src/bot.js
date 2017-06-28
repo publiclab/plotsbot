@@ -2,6 +2,9 @@ const fs = require('fs');
 
 const Behaviors = require('./behaviors');
 
+const greetBehavior = require('./behaviors/greet');
+const helpBehavior = require('./behaviors/help').helpBehavior;
+
 // Read file synchronously because we'd need this object in later steps anyway.
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 
@@ -17,5 +20,13 @@ if (process.env.TEST) {
   client = new IrcClient(config.server, config.name, config.channels);
 }
 
-const behaviors = new Behaviors(config.name, client);
+const joinBehaviors = [
+  greetBehavior
+];
+
+const messageBehaviors = [
+  helpBehavior
+];
+
+const behaviors = new Behaviors(config.name, client, joinBehaviors, messageBehaviors);
 behaviors.bootstrap();
