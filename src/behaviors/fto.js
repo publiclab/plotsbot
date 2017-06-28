@@ -10,7 +10,7 @@ const ftoAction = () => {
     labels: 'first-timers-only'
   }).then(data => {
     data.data.forEach(issue => {
-      console.log(`${issue.number} => ${issue.title}`)
+      console.log(`${issue.number} => ${issue.title}`);
     });
   });
 };
