@@ -1,4 +1,6 @@
 # plotsbot
+[![Build Status](https://travis-ci.org/publiclab/plotsbot.svg?branch=master)](https://travis-ci.org/publiclab/plotsbot)
+
 A bot for Public Lab
 
 plotsbot is an integrated system for bots across various interfaces, such as in an IRC chatroom, in GitHub issues, or on PublicLab.org. The bot consists of a set of behaviors, like "Greet" or "Help" (see below) which can work on one or more interface.
