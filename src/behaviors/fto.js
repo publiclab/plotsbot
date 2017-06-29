@@ -4,14 +4,14 @@ const Behavior = require('../models/behavior');
 const github = new Github();
 
 const ftoAction = () => {
-  github.issues.getForRepo({
+  return github.issues.getForRepo({
     owner: 'publiclab',
     repo: 'plots2',
     labels: 'first-timers-only'
   }).then(data => {
-    data.data.forEach(issue => {
-      console.log(`${issue.number} => ${issue.title}`);
-    });
+    return data.data.reduce((acc, issue) => {
+      return acc + `\n${issue.number} => ${issue.title}`;
+    }, '');
   });
 };
 
