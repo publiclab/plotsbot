@@ -54,8 +54,6 @@ class Behaviors {
             this.client.sendMessage(to, response);
           }
         }
-      }).catch(err => {
-        console.error(err);
       });
     });
   }
@@ -78,6 +76,8 @@ class Behaviors {
         // If the message was not meant for the bot
         return undefined;
       }
+    }).catch(err => {
+      console.error(err);
     });
   }
 
