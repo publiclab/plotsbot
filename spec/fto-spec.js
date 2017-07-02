@@ -1,32 +1,9 @@
 const Behaviors = require('../src/behaviors');
+const mockGithub = require('../src/utils').mockGithub;
 
 const emptyResponse = 'You need to mention the name of a repository.';
 const existingResponse = 'publiclab/existing\n1 => My first fake issue\n2 => My second fake issue';
 const nonexistingReponse = 'publiclab/nonexisting is not a valid repository.';
-
-const mockGithub = {
-  issues: {
-    getForRepo: ({ repo }) => {
-      return new Promise((resolve, reject) => {
-        if (repo == 'existing') {
-          resolve({
-            data: [{
-              number: 1,
-              title: 'My first fake issue'
-            }, {
-              number: 2,
-              title: 'My second fake issue'
-            }]
-          });
-        } else {
-          let err = new Error();
-          err.status = 'Not Found';
-          reject(err);
-        }
-      });
-    }
-  }
-};
 
 describe('FTO Behavior', () => {
   const botNick = 'testbot';
