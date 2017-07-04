@@ -48,6 +48,7 @@ help
 
 1. `trigger: String` => The event on which the behavior is supposed to be triggered. Currently, two events are supported - the `join` event which is triggered whenever a new user joins a particular channel, and the `message` event whenever a particular user sends a message on a channel.
 2. `action: Function` => This is the action of the behavior which is called by the bot at the appropriate moment. The bot provides the function with different arguments depending on the corresponding behavior's `trigger` value. For behaviors with `trigger` equal to `join`, the bot passes three arguments to the action function upon trigger. These are:
+
     1. `channel: String` => This is the name of the channel on which the user joined.
     2. `username: String` => This is the username of the new user.
     3. `botNick: String` => This is the username of the bot.
@@ -56,11 +57,16 @@ help
 
     1. `botNick: String` => This is the username of the bot.
     2. `options: Array` => This is an array containing additional options provided by the user.
+
+    This function may return a result string which will be sent back to the user in a message, or a promise that will eventually yield such a string.
+
 3. `keyword: String` **(Only required for message triggered behaviors)** => This is the keyword that must be present in the message in order for the bot to call the behavior's action function.
 
 ## Behaviors
 
 Behaviors are clearly defined tasks performed by the bot. A behavior may use any third-party functions to perform this action, but it needs to expose a few mandatory fields that are used by the chatbot to trigger the behavior at the appropriate time.
+
+A behavior may export an object of type `Behavior` or a factory function that returns such an object. These factory functions come into play when you want a shared state between multiple behaviors. For example: If you have multiple behaviors that make use of a database, there is no need to get a database connection individually for each such behavior.
 
 ### Greet
 `trigger` **join**
@@ -72,6 +78,12 @@ The bot greets users when they join the channel.
 `keyword` **help**
 
 Prints out the help messages of the modules whose names have been specified. If no modules were mentioned, all modules are explained.
+
+### First Timers Only
+`trigger` **message**  
+`keyword` **fto**
+
+Prints out all the issues in the specified publiclab repositories labelled 'first-timers-only'. If no repositories are mentioned, the user is asked to do so.
 
 ## Dependencies
 

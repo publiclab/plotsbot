@@ -15,8 +15,7 @@ class CliClient {
   }
 
   sendMessage(channel, message) {
-    console.log(`[${this.nick} => ${channel}]\n${message}`);
-    console.log(`[${channel} => ${this.nick}]`);
+    console.log(message);
   }
 
   addMessageHandler(actions) {
