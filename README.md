@@ -3,7 +3,6 @@
 [![license](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com/)
 
-
 A bot for Public Lab
 
 plotsbot is an integrated system for bots across various interfaces, such as in an IRC chatroom, in GitHub issues, or on PublicLab.org. The bot consists of a set of behaviors, like "Greet" or "Help" (see below) which can work on one or more interface.
