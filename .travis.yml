@@ -3,8 +3,6 @@ node_js:
   - "6"
   - "7"
 cache: yarn
-before_install:
-  - echo -e "repo_token:\n  $COVERALLS_REPO_TOKEN" >> ./.coveralls.yml
 script:
   - yarn lint
   - yarn test
