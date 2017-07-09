@@ -9,6 +9,6 @@ before_install:
 script:
   - yarn lint
   - yarn test
-after-scripts:
+after_script:
   - yarn coverage
   - yarn report-coverage
