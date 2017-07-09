@@ -2,7 +2,6 @@
 [![Build Status](https://travis-ci.org/publiclab/plotsbot.svg?branch=master)](https://travis-ci.org/publiclab/plotsbot)
 [![license](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com/)
-[![Coverage Status](https://coveralls.io/repos/github/bassdeveloper/plotsbot/badge.svg?branch=coveralls)](https://coveralls.io/github/bassdeveloper/plotsbot?branch=coveralls)
 
 A bot for Public Lab
 
