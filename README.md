@@ -1,5 +1,6 @@
 # plotsbot
 [![Build Status](https://travis-ci.org/publiclab/plotsbot.svg?branch=master)](https://travis-ci.org/publiclab/plotsbot)
+[![Coveralls](https://img.shields.io/coveralls/jekyll/jekyll.svg)](https://coveralls.io/github/publiclab/plotsbot)
 [![license](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com/)
 
