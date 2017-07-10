@@ -42,4 +42,12 @@ describe('FTO Behavior', () => {
       done();
     });
   });
+
+  it('should throw an error if something else went wrong', (done) => {
+    behaviors.getResponse(botNick, 'fto out-of-this-world').then(() => {
+      done.fail('Not throwing an error as needed');
+    }).catch(() => {
+      done();
+    });
+  });
 });

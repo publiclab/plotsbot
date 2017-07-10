@@ -12,10 +12,12 @@ const mockGithub = {
               title: 'My second fake issue'
             }]
           });
-        } else {
+        } else if (repo == 'nonexisting') {
           let err = new Error();
           err.status = 'Not Found';
           reject(err);
+        } else {
+          reject(new Error('A different error'));
         }
       });
     }
