@@ -76,8 +76,6 @@ class Behaviors {
         // If the message was not meant for the bot
         return undefined;
       }
-    }).catch(err => {
-      console.error(err);
     });
   }
 
