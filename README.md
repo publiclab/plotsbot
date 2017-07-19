@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)](https://codeclimate.com/github/publiclab/plotsbot)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com/)
-[![Dependencies](https://img.shields.io/versioneye/d/ruby/rails.svg)](https://github.com/publiclab/plotsbot#dependencies)
+[![Dependencies](https://david-dm.org/publiclab/plotsbot.svg?branch=master)](https://david-dm.org/publiclab/plotsbot)
 
 A bot for Public Lab
 
