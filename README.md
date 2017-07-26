@@ -5,6 +5,7 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)](https://codeclimate.com/github/publiclab/plotsbot)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com/)
 [![Dependencies](https://david-dm.org/publiclab/plotsbot.svg?branch=master)](https://david-dm.org/publiclab/plotsbot)
+[![GitHub tag](https://img.shields.io/github/tag/expressjs/express.svg)]()
 
 A bot for Public Lab
 
