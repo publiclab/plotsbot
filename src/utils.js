@@ -10,7 +10,7 @@ function remove(array, element) {
 
 function exec(command) {
   return new Promise((resolve, reject) => {
-    childProcess.exec(command, (error, stdout, stderr) => {
+    childProcess.exec(command, (error, stdout) => {
       if (error) {
         reject(error);
       } else {
@@ -22,5 +22,6 @@ function exec(command) {
 
 module.exports = {
   contains,
-  remove
+  remove,
+  exec
 };
