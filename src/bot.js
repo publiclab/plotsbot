@@ -10,6 +10,7 @@ const state = {
 const greetBehavior = require('./behaviors/greet');
 const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
+const heatBehavior = require('./behaviors/heat');
 
 // Read file synchronously because we'd need this object in later steps anyway.
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
@@ -31,7 +32,8 @@ const joinBehaviors = [
 
 const messageBehaviors = [
   helpBehavior,
-  ftoBehavior
+  ftoBehavior,
+  heatBehavior
 ];
 
 const behaviors = new Behaviors(config.name, client, joinBehaviors, messageBehaviors);
