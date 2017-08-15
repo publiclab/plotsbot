@@ -3,6 +3,9 @@ const irc = require('irc');
 class IrcClient {
   constructor(server, nick, channels) {
     this.client = new irc.Client(server, nick, {channels});
+    this.client.addListener('error', (err) => {
+      console.log(err);
+    });
   }
 
   addJoinHandler(actions) {

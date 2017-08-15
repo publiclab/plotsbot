@@ -47,9 +47,9 @@ const app = express();
 app.get('/', (req, res) => {
   switch (req.query.action) {
     case 'tell':
-      for (channel in config.channels) {
+      config.channels.forEach((channel) => {
         client.sendMessage(channel, req.query.message);
-      }
+      });
       res.sendStatus(200);
       break;
     default:
