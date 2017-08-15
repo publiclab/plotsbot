@@ -46,18 +46,18 @@ const app = express();
 
 app.get('/', (req, res) => {
   switch (req.query.action) {
-    case 'tell':
-      config.channels.forEach((channel) => {
-        client.sendMessage(channel, `${require('os').userInfo().username} tells: ${req.query.message}`);
-      });
-      res.sendStatus(200);
-      break;
-    default:
-      res.sendStatus(400);
-      break;
+  case 'tell':
+    config.channels.forEach((channel) => {
+      client.sendMessage(channel, `${require('os').userInfo().username} tells: ${req.query.message}`);
+    });
+    res.sendStatus(200);
+    break;
+  default:
+    res.sendStatus(400);
+    break;
   }
 });
 
 app.listen(3000, () => {
-  console.log('Plotsbot is listening on port 3000!')
+  console.log('Plotsbot is listening on port 3000!');
 });
