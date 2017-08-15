@@ -38,3 +38,26 @@ const messageBehaviors = [
 
 const behaviors = new Behaviors(config.name, client, joinBehaviors, messageBehaviors);
 behaviors.bootstrap();
+
+// Express server for `show` and `tell` actions
+
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  switch (req.query.action) {
+    case 'tell':
+      for (channel in config.channels) {
+        client.sendMessage(channel, req.query.message);
+      }
+      res.sendStatus(200);
+      break;
+    default:
+      res.sendStatus(400);
+      break;
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Plotsbot is listening on port 3000!')
+});
