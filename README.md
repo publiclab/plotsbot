@@ -91,6 +91,17 @@ Prints out the help messages of the modules whose names have been specified. If 
 
 Prints out all the issues in the specified publiclab repositories labelled 'first-timers-only'. If no repositories are mentioned, the user is asked to do so.
 
+## Submitting Behaviors
+
+If you want to submit your own behavior, your pull request needs to be self-contained. That is, it requires the following essential components:
+
+1. The core behavior object file inside the `src/behaviors` directory.
+2. A unit test for the behavior inside the `spec` directory named `<behavior-name>-spec.js`.
+3. Import, configure and bootstrap the behavior appropriately inside the `src/bot.js` file.
+4. Add the appropriate help inside the help behavior and information inside the documentation.
+
+A (nearly) canonical example for such a pull request is [#67](https://github.com/publiclab/plotsbot/pull/67).
+
 ## Dependencies
 
 ### 1. NVM
