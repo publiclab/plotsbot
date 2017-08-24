@@ -93,7 +93,7 @@ Prints out all the issues in the specified publiclab repositories labelled 'firs
 
 ## Submitting Behaviors
 
-If you want to submit your own behavior, you pull request needs to be self-contained. That is, it requires the following essential components:
+If you want to submit your own behavior, your pull request needs to be self-contained. That is, it requires the following essential components:
 
 1. The core behavior object file inside the `src/behaviors` directory.
 2. A unit test for the behavior inside the `spec` directory named `<behavior-name>-spec.js`.
