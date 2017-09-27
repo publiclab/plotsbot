@@ -2,7 +2,7 @@ const Behaviors = require('../src/behaviors');
 const mockGithub = require('./test-utils').mockGithub;
 
 const emptyResponse = 'You need to mention the name of a repository.';
-const existingResponse = 'publiclab/existing\n1 => My first fake issue\n2 => My second fake issue';
+const existingResponse = 'publiclab/existing\n1 => My first fake issue [url_1]\n2 => My second fake issue [url_2]';
 const nonexistingReponse = 'publiclab/nonexisting is not a valid repository.';
 
 describe('FTO Behavior', () => {

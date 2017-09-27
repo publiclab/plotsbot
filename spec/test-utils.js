@@ -6,10 +6,12 @@ const mockGithub = {
           resolve({
             data: [{
               number: 1,
-              title: 'My first fake issue'
+              title: 'My first fake issue',
+              html_url: 'url_1'
             }, {
               number: 2,
-              title: 'My second fake issue'
+              title: 'My second fake issue',
+              html_url: 'url_2'
             }]
           });
         } else if (repo == 'nonexisting') {

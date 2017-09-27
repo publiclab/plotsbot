@@ -8,7 +8,7 @@ module.exports = ({ github }) => {
       labels: 'first-timers-only'
     }).then(data => {
       return data.data.reduce((acc, issue) => {
-        return acc + `\n${issue.number} => ${issue.title}`;
+        return acc + `\n${issue.number} => ${issue.title} [${issue.html_url}]`;
       }, `publiclab/${repo}`);
     }).catch(err => {
       if (err.status === 'Not Found') {
