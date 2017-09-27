@@ -45,10 +45,7 @@ describe('FTO Behavior', () => {
 
   it('should throw an error if something else went wrong', (done) => {
     // This promise is expected to be rejected
-    behaviors.getResponse(botNick, 'fto out-of-this-world').then(() => {
-      // Fail the test if the promise was resolved and not rejected
-      done.fail('Not throwing an error as needed');
-    }).catch(() => {
+    behaviors.getResponse(botNick, 'fto out-of-this-world').catch(() => {
       // Pass the test if the promise was rejected successfully
       done();
     });
