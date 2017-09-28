@@ -4,7 +4,7 @@ function parseMessage (message) {
   return message.split(/[\s,.;:!?]/g).filter(String);
 }
 
-function messageResponse(botNick, parsed, behaviors) {
+function messageResponse(botNick, parsed, keywordBehaviors, fallbackBehaviors) {
   return Promise.resolve().then(() => {
     // This function takes the parsed version of the message and the array of
     // behaviors with `trigger` equal to "message" (i.e. the behaviors supposed to
@@ -12,16 +12,27 @@ function messageResponse(botNick, parsed, behaviors) {
     // mentioned by `keyword` and returns the result
 
     // This snippet looks if the parsed message contains the keyword of any of the
-    // behavior inside the behaviors array.
-    const behavior = behaviors.find(behavior =>
+    // behavior inside the keywordBehaviors array
+    const behavior = keywordBehaviors.find(behavior =>
       utils.contains(parsed, behavior.keyword)
     );
 
     // If there was a match, remove the behavior's keyword from the parsed message
     // call the behavior's action with the remaining message and the bot's nick
+    // otherwise, it calls all fallback behaviors and channels their output instead
     if (behavior) {
       utils.remove(parsed, behavior.keyword);
       return behavior.action(botNick, parsed);
+    } else {
+      let output = '';
+      fallbackBehaviors.forEach((behavior) => {
+        output += behavior.action(botNick, parsed) + '\n';
+      });
+
+      // Send the message only if it's not empty. Otherwise, return undefined.
+      if (output) {
+        return output;
+      }
     }
   });
 }
@@ -31,7 +42,20 @@ class Behaviors {
     this.botNick = botNick;
     this.client = client;
     this.joinBehaviors = joinBehaviors;
-    this.messageBehaviors = messageBehaviors;
+
+    // These are the message behaviors that have a certain keyword trigger
+    this.keywordMessageBehaviors = [];
+    // These are message behaviors that do not have a definite trigger keyword,
+    // they are triggered whenever no certain keyword is mentioned
+    this.fallbackMessageBehaviors = [];
+    messageBehaviors.forEach((behavior) => {
+      // If `behavior.keyword` is not a false-y value (`undefined` in our case)
+      if (behavior.keyword) {
+        this.keywordMessageBehaviors.push(behavior);
+      } else {
+        this.fallbackMessageBehaviors.push(behavior);
+      }
+    });
   }
 
   addJoinHandler() {
@@ -63,15 +87,15 @@ class Behaviors {
       let parsed = parseMessage(message);
       if(to === this.botNick) {
         // If the message was sent directly to the bot (eg: in a DM)
-        return messageResponse(this.botNick, parsed, this.messageBehaviors);
+        return messageResponse(this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
       } else if (utils.contains(parsed, this.botNick)) {
         // If bot was mentioned
         utils.remove(parsed, this.botNick);
-        return messageResponse(this.botNick, parsed, this.messageBehaviors);
+        return messageResponse(this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
       } else if (utils.contains(parsed, '@' + this.botNick)) {
         // If bot was mentioned, Gitter style
         utils.remove(parsed, '@' + this.botNick);
-        return messageResponse(this.botNick, parsed, this.messageBehaviors);
+        return messageResponse(this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
       } else {
         // If the message was not meant for the bot
         return undefined;
