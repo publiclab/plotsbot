@@ -24,15 +24,7 @@ function messageResponse(botNick, parsed, keywordBehaviors, fallbackBehaviors) {
       utils.remove(parsed, behavior.keyword);
       return behavior.action(botNick, parsed);
     } else {
-      let output = '';
-      fallbackBehaviors.forEach((behavior) => {
-        output += behavior.action(botNick, parsed) + '\n';
-      });
-
-      // Send the message only if it's not empty. Otherwise, return undefined.
-      if (output) {
-        return output;
-      }
+      return Promise.all(fallbackBehaviors.map(behavior => behavior.action(botNick, parsed))).then(outputs => outputs.join('\n'));
     }
   });
 }
