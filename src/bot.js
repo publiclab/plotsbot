@@ -4,14 +4,15 @@ const Github = require('github');
 const Behaviors = require('./behaviors');
 
 const state = {
-  github: new Github()
+  github: new Github(),
+  responseTime: 10 * 60 * 1000
 };
 
 const greetBehavior = require('./behaviors/greet');
 const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
-const unresponsiveBehavior = require('./behaviors/unresponsive');
+const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
 
 // Read file synchronously because we'd need this object in later steps anyway.
 const config = JSON.parse(fs.readFileSync('../config.json', 'utf8'));

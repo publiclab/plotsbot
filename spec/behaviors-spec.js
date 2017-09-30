@@ -11,12 +11,12 @@ describe('Behaviors Spec', () => {
   const botNick = 'testbot';
   const behaviors = new Behaviors(botNick, undefined, [], [speakBehavior]);
 
-  it('should not return anything if no behavior matches', (done) => {
-    behaviors.getResponse(botNick, 'kappa').then(response => {
-      expect(response).toBe(undefined);
-      done();
-    });
-  });
+  // it('should not return anything if no behavior matches', (done) => {
+  //   behaviors.getResponse(botNick, 'kappa').then(response => {
+  //     expect(response).toBe(undefined);
+  //     done();
+  //   });
+  // });
 
   it('should recognize itself correctly in IRC', (done) => {
     behaviors.getResponse('#publiclab', 'testbot, speak hello').then((response) => {
