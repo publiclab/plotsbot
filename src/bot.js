@@ -5,7 +5,8 @@ const Behaviors = require('./behaviors');
 
 const state = {
   github: new Github(),
-  responseTime: 10 * 60 * 1000
+  responseTime: 10 * 60 * 1000,
+  offsetTime: 1000
 };
 
 const greetBehavior = require('./behaviors/greet');

@@ -24,11 +24,14 @@ function messageResponse(botNick, parsed, keywordBehaviors, fallbackBehaviors) {
       utils.remove(parsed, behavior.keyword);
       return behavior.action(botNick, parsed);
     } else {
-      return Promise.all(fallbackBehaviors.map(behavior => behavior.action(botNick, parsed)))
-        .then(outputs => outputs.join('\n'))
-        .catch(() => { /* Just another day in chatbot-land, do nothing. */ });
+      return fallbackResponse(botNick, parsed, fallbackBehaviors);
     }
   });
+}
+
+function fallbackResponse(botNick, parsed, fallbackBehaviors) {
+  return Promise.all(fallbackBehaviors.map(behavior => behavior.action(botNick, parsed)))
+    .then(outputs => outputs.join('\n'));
 }
 
 class Behaviors {
@@ -72,6 +75,8 @@ class Behaviors {
             this.client.sendMessage(to, response);
           }
         }
+      }).catch((err) => {
+        console.error(err);
       });
     });
   }
@@ -91,8 +96,7 @@ class Behaviors {
         utils.remove(parsed, '@' + this.botNick);
         return messageResponse(this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
       } else {
-        // If the message was not meant for the bot
-        return undefined;
+        return fallbackResponse(this.botNick, parsed, this.fallbackMessageBehaviors);
       }
     });
   }

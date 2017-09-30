@@ -34,7 +34,7 @@ describe('Behaviors Spec', () => {
 
   it('should not respond if it is not mentioned', (done) => {
     behaviors.getResponse('#publiclab', 'Hi Charlie!').then((response) => {
-      expect(response).toBe(undefined);
+      expect(response).toBe('');
       done();
     });
   });

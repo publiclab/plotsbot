@@ -1,6 +1,6 @@
 const Behavior = require('../models/behavior');
 
-module.exports = ({ responseTime }) => {
+module.exports = ({ responseTime, offsetTime }) => {
   let currentTimeout;
 
   const unresponsiveAction = () => {
@@ -15,7 +15,7 @@ module.exports = ({ responseTime }) => {
 
       setTimeout(() => {
         reject();
-      }, responseTime + 1000);
+      }, responseTime + offsetTime);
     });
   };
 
