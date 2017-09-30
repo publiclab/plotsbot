@@ -17,16 +17,12 @@ describe('Unresponsive Behavior', () => {
   });
 
   it('should respond to last message if consective messages appear', (done) => {
-    behaviors.getResponse(botNick, 'hi').then(() => {
-      done.fail();
-    }).catch(() => {
+    behaviors.getResponse(botNick, 'hi').catch(() => {
       // Seems fine.
     });
     behaviors.getResponse(botNick, 'hello').then(response => {
       expect(response).toBe(standardResponse);
       done();
-    }).catch(() => {
-      done.fail();
     });
   });
 
@@ -34,8 +30,6 @@ describe('Unresponsive Behavior', () => {
     behaviors.getResponse(botNick, 'hi').catch(() => {
       done();
     });
-    behaviors.getResponse(botNick, 'hello').catch(() => {
-      done.fail();
-    });
+    behaviors.getResponse(botNick, 'hello');
   });
 });
