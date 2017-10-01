@@ -120,7 +120,7 @@ In order to install all node modules the package depends on, just run `yarn` or 
 
 ## Setup
 
-1. Copy the sample configuration at `config.js.sample` by running `cp config.js.sample config.js`
+1. Copy the sample configuration at `config.json.sample` by running `cp config.json.sample config.json`
   1. Let the channel and server remain to be `#publiclab-testing` and OFTC respectively. This is the ideal channel you would like to test your changes on. I repeat, **DO NOT** change the channel and server unless you know exactly what you're doing and without the consent of the owner of the respective channel.
   2. Change the name attribute to something unique. `plotsbot-${your-username-here}` sounds very indicative and would help you differentiate your local instance from other instances of the bot.
 
