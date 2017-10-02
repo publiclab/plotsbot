@@ -10,7 +10,7 @@ describe('Utils Tests', () => {
 
   it('should use exec function successfully', (done) => {
     utils.exec('echo ping').then((result) => {
-      expect(result).toBe('ping\r\n');
+      expect(result).toBe('ping\n');
       done();
     });
   });
