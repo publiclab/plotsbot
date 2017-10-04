@@ -13,7 +13,7 @@ const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
 
 // Read file synchronously because we'd need this object in later steps anyway.
-const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+const config = JSON.parse(fs.readFileSync('../config.json', 'utf8'));
 
 let client;
 if (process.env.TEST) {
