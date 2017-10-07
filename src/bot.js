@@ -9,6 +9,7 @@ const state = {
   offsetTime: 1000
 };
 
+const path = require('path');
 const greetBehavior = require('./behaviors/greet');
 const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
@@ -16,7 +17,8 @@ const heatBehavior = require('./behaviors/heat');
 const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
 
 // Read file synchronously because we'd need this object in later steps anyway.
-const config = JSON.parse(fs.readFileSync('../config.json', 'utf8'));
+const configFile = path.join(__dirname, '../', 'config.json');
+const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
 
 let client;
 if (process.env.TEST) {
