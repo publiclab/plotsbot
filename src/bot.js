@@ -15,6 +15,7 @@ const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
 const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
+const versionBehavior = require('./behaviors/version');
 
 // Read file synchronously because we'd need this object in later steps anyway.
 const configFile = path.join(__dirname, '../', 'config.json');
@@ -39,7 +40,8 @@ const messageBehaviors = [
   helpBehavior,
   ftoBehavior,
   heatBehavior,
-  unresponsiveBehavior
+  unresponsiveBehavior,
+  versionBehavior
 ];
 
 const behaviors = new Behaviors(config.name, client, joinBehaviors, messageBehaviors);
