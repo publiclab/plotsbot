@@ -16,6 +16,7 @@
   "devDependencies": {
     "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
+    "husky": "^0.14.3",
     "istanbul": "^0.4.5",
     "jasmine": "^2.6.0"
   },
@@ -24,6 +25,7 @@
     "lint-fix": "./node_modules/.bin/eslint --fix .",
     "test": "./node_modules/.bin/jasmine",
     "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/jasmine/bin/jasmine.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "start": "node ."
+    "start": "node .",
+    "precommit": "yarn lint && yarn test"
   }
 }
