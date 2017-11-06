@@ -23,7 +23,7 @@ function printSpecificHelp (botNick, options) {
 }
 
 let helpAction = (botNick, options) => {
-  if(options.length == 0) {
+  if(options.length === 0) {
     return printGeneralHelp(botNick);
   } else {
     return printSpecificHelp(botNick, options);
