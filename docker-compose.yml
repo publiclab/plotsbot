@@ -1,0 +1,8 @@
+version: "2"
+services:
+  plotsbot:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "127.0.0.1:4001:4000"
