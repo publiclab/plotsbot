@@ -1,7 +1,7 @@
-Contributing to PLOTSBOT
+Contributing to plotsbot
 ==========================
 
-We welcome community contributions to PLOTSBOT! To setup PLOTSBOT locally, follow the instructions in the [README.md file](https://github.com/publiclab/plotsbot#setup).
+We welcome community contributions to plotsbot! To setup plotsbot locally, follow the instructions in the [README.md file](https://github.com/publiclab/plotsbot#setup).
 
 ## First Timers Welcome!
 
