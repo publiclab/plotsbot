@@ -3,6 +3,6 @@ services:
   plotsbot:
     build: .
     volumes:
-      - .:/app
+      - .:/usr/src/app
     ports:
       - "127.0.0.1:4001:4000"
