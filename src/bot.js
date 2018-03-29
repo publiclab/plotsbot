@@ -2,6 +2,7 @@ const fs = require('fs');
 const Github = require('github');
 
 const Behaviors = require('./behaviors');
+const SimpleMessageBehavior = require('./models/simple-message-behavior');
 
 const state = {
   github: new Github(),
@@ -11,7 +12,7 @@ const state = {
 
 const path = require('path');
 const greetBehavior = require('./behaviors/greet');
-const helpBehavior = require('./behaviors/help').helpBehavior;
+// const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
 const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
@@ -32,12 +33,11 @@ if (process.env.TEST) {
   client = new IrcClient(config.server, config.name, config.channels);
 }
 
-const joinBehaviors = [
-  greetBehavior
-];
+const joinBehaviors = [greetBehavior];
 
 const messageBehaviors = [
-  helpBehavior,
+  // helpBehavior,
+  new SimpleMessageBehavior('help', 'this is the help text'),
   ftoBehavior,
   heatBehavior,
   unresponsiveBehavior,
@@ -55,8 +55,11 @@ const app = express();
 app.get('/', (req, res) => {
   switch (req.query.action) {
   case 'tell':
-    config.channels.forEach((channel) => {
-      client.sendMessage(channel, `${require('os').userInfo().username} tells: ${req.query.message}`);
+    config.channels.forEach(channel => {
+      client.sendMessage(
+        channel,
+        `${require('os').userInfo().username} tells: ${req.query.message}`
+      );
     });
     res.sendStatus(200);
     break;
