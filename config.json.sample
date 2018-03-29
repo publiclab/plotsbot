@@ -1,5 +1,5 @@
 {
-  "channels": ["#publiclab-testing"],
+  "channels": ["#publiclab"],
   "server": "irc.oftc.net",
   "name": "plotsbot"
 }
