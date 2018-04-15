@@ -10,28 +10,28 @@ describe('Help Behavior', () => {
   const invalidHelp = helpMessage(botNick, 'invalid');
 
   it('should print general help', (done) => {
-    behaviors.getResponse(botNick, 'help').then(response => {
+    behaviors.getResponse('user', botNick, 'help').then(response => {
       expect(response).toBe(chatbotHelp);
       done();
     });
   });
 
   it('should print specific help for existing modules', (done) => {
-    behaviors.getResponse(botNick, 'help chatbot').then(response => {
+    behaviors.getResponse('user', botNick, 'help chatbot').then(response => {
       expect(response).toBe(chatbotHelp);
       done();
     });
   });
 
   it('should print specific help for nonexisting modules', (done) => {
-    behaviors.getResponse(botNick, 'help invalid').then(response => {
+    behaviors.getResponse('user', botNick, 'help invalid').then(response => {
       expect(response).toBe(invalidHelp);
       done();
     });
   });
 
   it('should print specific help for existing and nonexisting modules combined', (done) => {
-    behaviors.getResponse(botNick, 'help chatbot invalid').then(response => {
+    behaviors.getResponse('user', botNick, 'help chatbot invalid').then(response => {
       expect(response).toBe(chatbotHelp + '\n\n' + invalidHelp);
       done();
     });

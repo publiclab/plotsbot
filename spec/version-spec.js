@@ -8,7 +8,7 @@ describe('Version Behavior', () => {
   const versionResponse = `testbot is running package ${process.env.npm_package_name} at version ${process.env.npm_package_version}`;
 
   it('should print information correctly', (done) => {
-    behaviors.getResponse(botNick, 'version').then(response => {
+    behaviors.getResponse('user', botNick, 'version').then(response => {
       expect(response).toBe(versionResponse);
       done();
     });

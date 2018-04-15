@@ -11,33 +11,33 @@ describe('FTO Behavior', () => {
   const behaviors = new Behaviors(botNick, undefined, [], [ftoBehavior]);
 
   it('should ask user to mention a repository', (done) => {
-    behaviors.getResponse(botNick, 'fto').then(response => {
+    behaviors.getResponse('user', botNick, 'fto').then(response => {
       expect(response).toBe(emptyResponse);
       done();
     });
   });
 
   it('should get existing repository', (done) => {
-    behaviors.getResponse(botNick, 'fto existing').then(response => {
+    behaviors.getResponse('user', botNick, 'fto existing').then(response => {
       expect(response).toBe(existingResponse);
       done();
     });
   });
 
   it('should get nonexisting repository', (done) => {
-    behaviors.getResponse(botNick, 'fto nonexisting').then(response => {
+    behaviors.getResponse('user', botNick, 'fto nonexisting').then(response => {
       expect(response).toBe(nonexistingReponse);
       done();
     });
   });
 
   it('should get different combinations of repositories', (done) => {
-    behaviors.getResponse(botNick, 'fto nonexisting existing nonexisting').then(response => {
+    behaviors.getResponse('user', botNick, 'fto nonexisting existing nonexisting').then(response => {
       expect(response).toBe(`${nonexistingReponse}\n\n${existingResponse}\n\n${nonexistingReponse}`);
       done();
     });
 
-    behaviors.getResponse(botNick, 'fto existing nonexisting existing').then(response => {
+    behaviors.getResponse('user', botNick, 'fto existing nonexisting existing').then(response => {
       expect(response).toBe(`${existingResponse}\n\n${nonexistingReponse}\n\n${existingResponse}`);
       done();
     });
@@ -45,7 +45,7 @@ describe('FTO Behavior', () => {
 
   it('should throw an error if something else went wrong', (done) => {
     // This promise is expected to be rejected
-    behaviors.getResponse(botNick, 'fto out-of-this-world').catch(() => {
+    behaviors.getResponse('user', botNick, 'fto out-of-this-world').catch(() => {
       // Pass the test if the promise was rejected successfully
       done();
     });

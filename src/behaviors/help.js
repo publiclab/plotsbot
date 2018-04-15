@@ -22,7 +22,7 @@ function printSpecificHelp (botNick, options) {
   return options.map((service) => helpMessage(botNick, service)).join('\n\n');
 }
 
-let helpAction = (botNick, options) => {
+let helpAction = (botNick, frm, options) => {
   if(options.length == 0) {
     return printGeneralHelp(botNick);
   } else {

@@ -1,7 +1,7 @@
 const Behaviors = require('../src/behaviors');
 const Behavior = require('../src/models/behavior');
 
-function speakAction(botNick, options) {
+function speakAction(botNick, frm, options) {
   return options.join(' ');
 }
 
@@ -19,21 +19,21 @@ describe('Behaviors Spec', () => {
   // });
 
   it('should recognize itself correctly in IRC', (done) => {
-    behaviors.getResponse('#publiclab', 'testbot, speak hello').then((response) => {
+    behaviors.getResponse('user', '#publiclab', 'testbot, speak hello').then((response) => {
       expect(response).toBe('hello');
       done();
     });
   });
 
   it('should recognize itself correctly on Gitter', (done) => {
-    behaviors.getResponse('#publiclab', '@testbot speak hello').then((response) => {
+    behaviors.getResponse('user', '#publiclab', '@testbot speak hello').then((response) => {
       expect(response).toBe('hello');
       done();
     });
   });
 
   it('should not respond if it is not mentioned', (done) => {
-    behaviors.getResponse('#publiclab', 'Hi Charlie!').then((response) => {
+    behaviors.getResponse('user', '#publiclab', 'Hi Charlie!').then((response) => {
       expect(response).toBe('');
       done();
     });
