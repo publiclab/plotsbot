@@ -19,7 +19,7 @@ module.exports = ({ github }) => {
     });
   }
 
-  const ftoAction = (botNick, options) => {
+  const ftoAction = (botNick, frm, options) => {
     if (options.length > 0) {
       return Promise.all(options.map(ftoRepo)).then(repos => repos.join('\n\n'));
     } else {

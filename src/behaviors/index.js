@@ -4,7 +4,7 @@ function parseMessage (message) {
   return message.split(/[\s,.;:!?]/g).filter(String);
 }
 
-function messageResponse(botNick, parsed, keywordBehaviors, fallbackBehaviors) {
+function messageResponse(frm, botNick, parsed, keywordBehaviors, fallbackBehaviors) {
   return Promise.resolve().then(() => {
     // This function takes the parsed version of the message and the array of
     // behaviors with `trigger` equal to "message" (i.e. the behaviors supposed to
@@ -22,15 +22,15 @@ function messageResponse(botNick, parsed, keywordBehaviors, fallbackBehaviors) {
     // otherwise, it calls all fallback behaviors and channels their output instead
     if (behavior) {
       utils.remove(parsed, behavior.keyword);
-      return behavior.action(botNick, parsed);
+      return behavior.action(botNick, frm, parsed);
     } else {
-      return fallbackResponse(botNick, parsed, fallbackBehaviors);
+      return fallbackResponse(botNick, frm, parsed, fallbackBehaviors);
     }
   });
 }
 
-function fallbackResponse(botNick, parsed, fallbackBehaviors) {
-  return Promise.all(fallbackBehaviors.map(behavior => behavior.action(botNick, parsed)))
+function fallbackResponse(frm, botNick, parsed, fallbackBehaviors) {
+  return Promise.all(fallbackBehaviors.map(behavior => behavior.action(botNick, frm, parsed)))
     .then(outputs => outputs.join('\n'));
 }
 
@@ -58,20 +58,20 @@ class Behaviors {
   addJoinHandler() {
     this.client.addJoinHandler((channel, username) => {
       this.joinBehaviors.forEach(behavior => {
-        this.client.sendMessage(channel, behavior.action(channel, username, this.botNick));
+        this.client.sendMessage(channel, behavior.action(this.botNick, username, channel));
       });
     });
   }
 
   addMessageHandler() {
-    this.client.addMessageHandler((from, to, message) => {
-      this.getResponse(to, message).then((response) => {
+    this.client.addMessageHandler((frm, to, message) => {
+      this.getResponse(frm, to, message).then((response) => {
         if(response) {
           if(to === this.botNick) {
-            // Message was recieved in a DM
-            this.client.sendMessage(from, response);
+            // Message was received in a DM
+            this.client.sendMessage(frm, response);
           } else {
-            // Message was recieved in a normal channel
+            // Message was received in a normal channel
             this.client.sendMessage(to, response);
           }
         }
@@ -81,22 +81,22 @@ class Behaviors {
     });
   }
 
-  getResponse(to, message) {
+  getResponse(frm, to, message) {
     return Promise.resolve().then(() => {
       let parsed = parseMessage(message);
       if(to === this.botNick) {
         // If the message was sent directly to the bot (eg: in a DM)
-        return messageResponse(this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
+        return messageResponse(frm, this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
       } else if (utils.contains(parsed, this.botNick)) {
         // If bot was mentioned
         utils.remove(parsed, this.botNick);
-        return messageResponse(this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
+        return messageResponse(frm, this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
       } else if (utils.contains(parsed, '@' + this.botNick)) {
         // If bot was mentioned, Gitter style
         utils.remove(parsed, '@' + this.botNick);
-        return messageResponse(this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
+        return messageResponse(frm, this.botNick, parsed, this.keywordMessageBehaviors, this.fallbackMessageBehaviors);
       } else {
-        return fallbackResponse(this.botNick, parsed, this.fallbackMessageBehaviors);
+        return fallbackResponse(frm, this.botNick, parsed, this.fallbackMessageBehaviors);
       }
     });
   }

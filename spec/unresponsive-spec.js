@@ -10,26 +10,26 @@ describe('Unresponsive Behavior', () => {
   const behaviors = new Behaviors(botNick, undefined, [], [unresponsiveBehavior]);
 
   it('should print the message if nobody responds for 10 ms', (done) => {
-    behaviors.getResponse(botNick, 'hello').then(response => {
+    behaviors.getResponse('user', botNick, 'hello').then(response => {
       expect(response).toBe(standardResponse);
       done();
     });
   });
 
   it('should respond to last message if consective messages appear', (done) => {
-    behaviors.getResponse(botNick, 'hi').catch(() => {
+    behaviors.getResponse('user', botNick, 'hi').catch(() => {
       // Seems fine.
     });
-    behaviors.getResponse(botNick, 'hello').then(response => {
+    behaviors.getResponse('user', botNick, 'hello').then(response => {
       expect(response).toBe(standardResponse);
       done();
     });
   });
 
   it('should reject earlier messages if consecutive messages appear', (done) => {
-    behaviors.getResponse(botNick, 'hi').catch(() => {
+    behaviors.getResponse('user', botNick, 'hi').catch(() => {
       done();
     });
-    behaviors.getResponse(botNick, 'hello');
+    behaviors.getResponse('user', botNick, 'hello');
   });
 });
