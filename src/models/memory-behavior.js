@@ -10,7 +10,7 @@ class MemoryBehavior extends Behavior {
     const newAction = (botNick, username, ...args) => {
       if (!utils.contains(memory, username)) {
         memory.push(username);
-        action(botNick, username, ...args);
+        return action(botNick, username, ...args);
       }
     };
     super(trigger, newAction, keyword);
