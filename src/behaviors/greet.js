@@ -3,8 +3,8 @@ const utils = require('../utils');
 
 let greeted = [];
 
-const greetAction = (channel, username, botNick) => {
-  if(!utils.contains(greeted, username)) {
+const greetAction = (botNick, username) => {
+  if (!utils.contains(greeted, username)) {
     greeted.push(username);
     return `Welcome to Publiclab, ${username}! Here's a link to the Code of Conduct that's in effect in this, and all other spaces of Public Lab: https://publiclab.org/conduct. For a quick walkthrough, send the message: \`${botNick} help\``;
   }
