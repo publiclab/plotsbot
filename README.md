@@ -137,6 +137,10 @@ In order to experiment locally on the bot, you need to set the `TEST` environmen
 
 ## Contributing
 
+### Code of Conduct
+
+Please read and abide by our [Code of Conduct](https://github.com/publiclab/plotsbot/blob/master/CODE_OF_CONDUCT.md); our community aspires to be a respectful place both during online and in-person interactions.
+
 ### Versioning
 
 We use Semantic Versioning for maintaining versions for the git tag and npm package version. Please adhere to it strictly and visit their website for more information:   http://semver.org/
