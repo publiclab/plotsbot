@@ -11,12 +11,13 @@ const state = {
 };
 
 const path = require('path');
-const greetBehavior = require('./behaviors/greet');
+// const greetBehavior = require('./behaviors/greet');
 // const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
 const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
 const versionBehavior = require('./behaviors/version');
+const quietBehavior = require('./behaviors/quiet');
 
 // Read file synchronously because we'd need this object in later steps anyway.
 const configFile = path.join(__dirname, '../', 'config.json');
@@ -33,7 +34,10 @@ if (process.env.TEST) {
   client = new IrcClient(config.server, config.name, config.channels);
 }
 
-const joinBehaviors = [greetBehavior];
+const joinBehaviors = [
+  // greetBehavior, // using welcome message for now
+  quietBehavior
+];
 
 const messageBehaviors = [
   // helpBehavior,
