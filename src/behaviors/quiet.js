@@ -1,6 +1,6 @@
 const MemoryBehavior = require('../models/memory-behavior');
 
-module.exports = (state) => {
+module.exports = (client) => {
   // should run only on unrecognized users
   const quietAction = (botNick, username) => {
     var exempt = false;
