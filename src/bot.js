@@ -12,7 +12,7 @@ const state = {
 
 const path = require('path');
 // const greetBehavior = require('./behaviors/greet');
-// const helpBehavior = require('./behaviors/help').helpBehavior;
+const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
 const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
@@ -40,8 +40,8 @@ const joinBehaviors = [
 ];
 
 const messageBehaviors = [
-  // helpBehavior,
-  new SimpleMessageBehavior('help', 'this is the help text'),
+  new SimpleMessageBehavior('links', 'Ask a question: https://publiclab.org/questions\nFile an issue: https://github.com/publiclab/plots2/issues/new\nFind a new issue to work on: https://code.publiclab.org'),
+  helpBehavior,
   ftoBehavior,
   heatBehavior,
   unresponsiveBehavior,
