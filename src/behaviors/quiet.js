@@ -2,6 +2,7 @@ const MemoryBehavior = require('../models/memory-behavior');
 
 // should run only on unrecognized users
 const quietAction = (botNick, username) => {
+  const IrcClient = require('./interfaces/irc');
   client = new IrcClient(config.server, config.name, config.channels);
   var exempt = false;
   if (username.match(/\[m\]/) !== null) exempt = true; // exempt matrix user
