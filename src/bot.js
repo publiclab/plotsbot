@@ -17,14 +17,6 @@ const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
 
 let client;
 
-// const greetBehavior = require('./behaviors/greet');
-const helpBehavior = require('./behaviors/help').helpBehavior;
-const ftoBehavior = require('./behaviors/fto')(state);
-const heatBehavior = require('./behaviors/heat');
-const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
-const versionBehavior = require('./behaviors/version');
-const quietBehavior = require('./behaviors/quiet')(client);
-
 if (process.env.TEST) {
   const CliClient = require('./interfaces/cli');
   client = new CliClient(config.name);
@@ -40,6 +32,15 @@ if (process.env.TEST) {
     });
   }
 }
+
+// const greetBehavior = require('./behaviors/greet');
+const helpBehavior = require('./behaviors/help').helpBehavior;
+const ftoBehavior = require('./behaviors/fto')(state);
+const heatBehavior = require('./behaviors/heat');
+const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
+const versionBehavior = require('./behaviors/version');
+const quietBehavior = require('./behaviors/quiet')(client);
+
 const joinBehaviors = [
   // greetBehavior, // using welcome message for now
   quietBehavior
