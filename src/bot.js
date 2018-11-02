@@ -34,7 +34,10 @@ if (process.env.TEST) {
   client = new IrcClient(config.server, config.name, config.channels);
 }
 
-const joinBehaviors = [greetBehavior];
+const joinBehaviors = [
+  // greetBehavior, // using welcome message for now
+  quietBehavior
+];
 
 const messageBehaviors = [
   // helpBehavior,
