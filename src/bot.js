@@ -11,7 +11,7 @@ const state = {
 };
 
 const path = require('path');
-const greetBehavior = require('./behaviors/greet');
+// const greetBehavior = require('./behaviors/greet');
 // const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
