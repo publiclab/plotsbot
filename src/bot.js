@@ -10,13 +10,13 @@ const state = {
   offsetTime: 1000
 };
 
+const path = require('path');
 // Read file synchronously because we'd need this object in later steps anyway.
 const configFile = path.join(__dirname, '../', 'config.json');
 const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
 
 let client;
 
-const path = require('path');
 // const greetBehavior = require('./behaviors/greet');
 const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
