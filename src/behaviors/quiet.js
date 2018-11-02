@@ -5,7 +5,8 @@ const quietAction = (botNick, username) => {
   var exempt = false;
   if (username.match(/\[m\]/) !== null) exempt = true; // exempt matrix user
   if (exempt !== true) {
-    return `/quiet ${username}`;
+    client.send('quiet', '#publiclab', username); // attempting here
+    // return `/quiet ${username}`; // this didn't work, it just "spoke" it
   }
 };
 
