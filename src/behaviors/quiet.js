@@ -1,5 +1,12 @@
 const MemoryBehavior = require('../models/memory-behavior');
 
+// Read file synchronously because we'd need this object in later steps anyway.
+const configFile = path.join(__dirname, '../', 'config.json');
+
+const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
+ 
+let client;
+
 // should run only on unrecognized users
 const quietAction = (botNick, username) => {
   const IrcClient = require('./interfaces/irc');
