@@ -1,5 +1,7 @@
 const MemoryBehavior = require('../models/memory-behavior');
 
+const path = require('path');
+
 // Read file synchronously because we'd need this object in later steps anyway.
 const configFile = path.join(__dirname, '../', 'config.json');
 
