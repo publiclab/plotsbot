@@ -32,8 +32,13 @@ if (process.env.TEST) {
 } else {
   const IrcClient = require('./interfaces/irc');
   client = new IrcClient(config.server, config.name, config.channels);
+  if (config.nickpass !== undefined) {
+    client.client.addListener('registered', function() {
+      client.client.say('nickserv', 'identify ' + config.nickpass);
+      console.log('logging in with ' + config.name);
+    });
+  }
 }
-
 const joinBehaviors = [
   // greetBehavior, // using welcome message for now
   quietBehavior
