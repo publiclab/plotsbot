@@ -4,7 +4,7 @@ const MemoryBehavior = require('../models/memory-behavior');
 const quietAction = (botNick, username) => {
   var exempt = false;
   if (username.match(/\[m\]/) !== null) exempt = true; // exempt matrix user
-  if (exempt) {
+  if (exempt !== true) {
     return `/quiet ${username}`;
   }
 };
