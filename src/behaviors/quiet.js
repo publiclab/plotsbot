@@ -7,8 +7,8 @@ module.exports = (client) => {
     if (username.match(/\[m\]/) !== null) exempt = true; // exempt matrix user
     if (exempt !== true) {
       console.log(client);
-      client.client.send('quiet', '#publiclab', username); // attempting here
-      // return `/quiet ${username}`; // this didn't work, it just "spoke" it
+      // /mode #publiclab +q nick!*@*
+      client.client.send('/mode #publiclab +q ' + username + '!*@*'); // attempting here
     }
   };
 
