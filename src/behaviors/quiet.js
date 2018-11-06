@@ -8,6 +8,7 @@ module.exports = (client) => {
     if (exempt !== true) {
       // send a quiet command: /mode #publiclab +q nick!*@*
       client.client.send('MODE', '#publiclab', '+q', username + '!*@*');
+      client.client.send('MSG', username, "Welcome; because we've had some spam attacks, folks joining via IRC need to visit https://publiclab.org/chat#IRC to get approved to chat. We're really sorry for the inconvenience but the spam got really awful!";
     }
   };
 
