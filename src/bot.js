@@ -40,6 +40,7 @@ const heatBehavior = require('./behaviors/heat');
 const unresponsiveBehavior = require('./behaviors/unresponsive')(state);
 const versionBehavior = require('./behaviors/version');
 const quietBehavior = require('./behaviors/quiet')(client);
+const approveBehavior = require('./behaviors/approve')(client);
 
 const joinBehaviors = [
   // greetBehavior, // using welcome message for now
@@ -52,7 +53,8 @@ const messageBehaviors = [
   ftoBehavior,
   heatBehavior,
   unresponsiveBehavior,
-  versionBehavior
+  versionBehavior,
+  approveBehavior
 ];
 
 const behaviors = new Behaviors(config.name, client, joinBehaviors, messageBehaviors);
