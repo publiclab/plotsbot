@@ -45,6 +45,7 @@ const approveBehavior = require('./behaviors/approve')(client);
 
 const joinBehaviors = [
   // greetBehavior, // using welcome message for now
+  voiceBehavior,
   quietBehavior
 ];
 
@@ -55,7 +56,6 @@ const messageBehaviors = [
   heatBehavior,
   unresponsiveBehavior,
   versionBehavior,
-  voiceBehavior,
   approveBehavior
 ];
 
