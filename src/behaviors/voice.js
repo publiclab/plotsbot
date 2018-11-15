@@ -11,7 +11,7 @@ module.exports = (client) => {
     } else {
       // send a quiet command: /mode #publiclab +q nick!*@*
       client.client.send('MODE', '#publiclab', '+q', username + '!*@*');
-      client.client.send('PRIVMSG', username, "Welcome; because we've had some spam attacks, folks joining via IRC need to visit https://publiclab.org/chat#IRC to get approved to chat. We're really sorry for the inconvenience but the spam got really awful!");
+      client.client.send('PRIVMSG', username, 'Welcome; because we have had some spam attacks, folks joining via IRC need to type "/msg plotsbot approve me" approved to chat. We are really sorry for the inconvenience but the spam got really awful!');
     }
   };
 
