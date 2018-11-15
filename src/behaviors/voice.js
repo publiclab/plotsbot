@@ -15,5 +15,5 @@ module.exports = (client) => {
     }
   };
 
-  return new MemoryBehavior('join', quietAction);
+  return new MemoryBehavior('join', voiceAction);
 };
