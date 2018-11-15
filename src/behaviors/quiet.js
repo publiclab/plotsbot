@@ -9,6 +9,7 @@ module.exports = (client) => {
       // send a quiet command: /mode #publiclab +q nick!*@*
       client.client.send('MODE', '#publiclab', '+q', username + '!*@*');
       client.client.send('PRIVMSG', username, 'Welcome; because we have had some spam attacks, folks joining via IRC need to type "/msg plotsbot approve me" approved to chat. We are really sorry for the inconvenience but the spam got really awful!');
+      client.client.send('PRIVMSG', username, 'You may not be able to hear messages from other platforms; until this is fixed, see https://publiclab.org/chat to use a different chat system; apologies!');
     }
   };
 
