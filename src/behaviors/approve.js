@@ -1,5 +1,4 @@
 const Behavior = require('../models/behavior');
-const utils = require('../utils');
 
 module.exports = (client) => {
 
@@ -8,7 +7,7 @@ module.exports = (client) => {
     client.client.send('MODE', '#publiclab', '+e', username);
     // send an voice command: /mode #publiclab +e nick
     client.client.send('MODE', '#publiclab', '+v', username);
-    return "Welcome, " + username + ", sorry for the trouble!";
+    return 'Welcome, ' + username + ', sorry for the trouble!';
   };
 
   return new Behavior('message', approveAction, 'approve');
