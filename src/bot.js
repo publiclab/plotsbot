@@ -34,7 +34,7 @@ if (process.env.TEST) {
 }
 
 // const greetBehavior = require('./behaviors/greet');
-const voiceBehavior = require('./behaviors/voice');
+const voiceBehavior = require('./behaviors/voice')(client);
 const helpBehavior = require('./behaviors/help').helpBehavior;
 const ftoBehavior = require('./behaviors/fto')(state);
 const heatBehavior = require('./behaviors/heat');
