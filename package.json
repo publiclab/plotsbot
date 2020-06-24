@@ -7,7 +7,7 @@
   "author": "Ujjwal Sharma",
   "license": "GPL-3.0",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "github": "^11.0.0",
     "irc": "^0.5.2",
     "path": "^0.12.7",
