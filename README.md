@@ -88,9 +88,19 @@ Prints out the help messages of the modules whose names have been specified. If 
 
 ### First Timers Only
 `trigger` **message**  
-`keyword` **fto**
+`keyword` **fto repo-name**
 
 Prints out all the issues in the specified publiclab repositories labelled 'first-timers-only'. If no repositories are mentioned, the user is asked to do so.
+
+### Approve
+`trigger` **message**  
+`keyword` **approve nickname**
+Moderators only: sends an unquiet command so a user can post messages, and a voice confirmation.
+
+### Version
+`trigger` **message**  
+`keyword` **version**
+Prints out Plotsbot package version.
 
 ## Submitting Behaviors
 

@@ -23,7 +23,22 @@ module.exports = ({ github }) => {
     if (options.length > 0) {
       return Promise.all(options.map(ftoRepo)).then(repos => repos.join('\n\n'));
     } else {
-      return 'You need to mention the name of a repository.';
+      let answer = 'You need to mention the name of a repository.';
+
+      // github.repos.getForOrg({org: 'publiclab',})
+      //   .then(data=>{
+      //     let names = '';
+      //     data.data.map(repo=>{
+      //       if (repo.visibility === 'public' && repo.has_issues) {
+      //         names += repo.name
+      //         // Promise.all(repo.map(ftoRepo)).then(repo => console.log('repo', repo));
+      //         answer += `\n${repo.name}: ${repo.description}`;
+      //       }
+      //     })
+      // }).catch(err => {
+      //   console.log(err)
+      // });
+      return answer;
     }
   };
 
